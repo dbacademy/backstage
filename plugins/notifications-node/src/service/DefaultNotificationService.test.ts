@@ -22,6 +22,7 @@ import {
   DefaultNotificationService,
   NotificationSendOptions,
 } from './DefaultNotificationService';
+import { mockCredentials, mockServices } from '@backstage/backend-test-utils';
 
 const server = setupServer();
 
@@ -33,21 +34,13 @@ const testNotification: NotificationPayload = {
 
 describe('DefaultNotificationService', () => {
   setupRequestMockHandlers(server);
-  const mockBaseUrl = 'http://backstage/api/notifications';
-  const discoveryApi = {
-    getBaseUrl: async () => mockBaseUrl,
-    getExternalBaseUrl: async () => mockBaseUrl,
-  };
-  const tokenManager = {
-    getToken: async () => ({ token: '1234' }),
-    authenticate: jest.fn(),
-  };
+  const discovery = mockServices.discovery();
 
   let service: DefaultNotificationService;
-  beforeEach(() => {
+  beforeEach(async () => {
     service = DefaultNotificationService.create({
-      discovery: discoveryApi,
-      tokenManager,
+      auth: mockServices.auth(),
+      discovery,
       pluginId: 'test',
     });
   });
@@ -60,12 +53,20 @@ describe('DefaultNotificationService', () => {
       };
 
       server.use(
-        rest.post(`${mockBaseUrl}/`, async (req, res, ctx) => {
-          const json = await req.json();
-          expect(json).toEqual({ ...body, origin: 'plugin-test' });
-          expect(req.headers.get('Authorization')).toEqual('Bearer 1234');
-          return res(ctx.status(200));
-        }),
+        rest.post(
+          `${await discovery.getBaseUrl('notifications')}/`,
+          async (req, res, ctx) => {
+            const json = await req.json();
+            expect(json).toEqual({ ...body, origin: 'plugin-test' });
+            expect(req.headers.get('Authorization')).toEqual(
+              `Bearer ${mockCredentials.service.token({
+                subject: 'plugin:test',
+                targetPluginId: 'notifications',
+              })}`,
+            );
+            return res(ctx.status(200));
+          },
+        ),
       );
       await expect(service.send(body)).resolves.not.toThrow();
     });
@@ -77,12 +78,20 @@ describe('DefaultNotificationService', () => {
       };
 
       server.use(
-        rest.post(`${mockBaseUrl}/`, async (req, res, ctx) => {
-          const json = await req.json();
-          expect(json).toEqual({ ...body, origin: 'plugin-test' });
-          expect(req.headers.get('Authorization')).toEqual('Bearer 1234');
-          return res(ctx.status(400));
-        }),
+        rest.post(
+          `${await discovery.getBaseUrl('notifications')}/`,
+          async (req, res, ctx) => {
+            const json = await req.json();
+            expect(json).toEqual({ ...body, origin: 'plugin-test' });
+            expect(req.headers.get('Authorization')).toEqual(
+              `Bearer ${mockCredentials.service.token({
+                subject: 'plugin:test',
+                targetPluginId: 'notifications',
+              })}`,
+            );
+            return res(ctx.status(400));
+          },
+        ),
       );
       await expect(service.send(body)).rejects.toThrow();
     });
