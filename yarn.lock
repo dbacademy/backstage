@@ -3812,7 +3812,7 @@ __metadata:
     "@types/react": ^16.13.1 || ^17.0.0 || ^18.0.0
     "@types/zen-observable": ^0.8.0
     history: ^5.0.0
-    i18next: ^22.4.15
+    i18next: ^23.0.0
     lodash: ^4.17.21
     msw: ^1.0.0
     prop-types: ^15.7.2
@@ -10022,7 +10022,7 @@ __metadata:
     "@testing-library/jest-dom": ^6.0.0
     "@types/react": ^16.13.1 || ^17.0.0 || ^18.0.0
     cross-fetch: ^4.0.0
-    i18next: ^22.4.15
+    i18next: ^23.0.0
     msw: ^1.0.0
     zen-observable: ^0.10.0
   peerDependencies:
@@ -30362,12 +30362,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.4.15":
-  version: 22.5.1
-  resolution: "i18next@npm:22.5.1"
+"i18next@npm:^23.0.0":
+  version: 23.8.2
+  resolution: "i18next@npm:23.8.2"
   dependencies:
-    "@babel/runtime": ^7.20.6
-  checksum: 175f8ab7fac2abcee147b00cc2d8e7d4fa9b05cdc227f02cac841fc2fd9545ed4a6d88774f594f8ad12dc944e4d34cc8e88aa00c8b9947baef9e859d93abd305
+    "@babel/runtime": ^7.23.2
+  checksum: c20e68c6c216bfcedc16d8d8b1ee545423e26e84ace36b699f936ec8cf1b4df8ee2ae093e7a3e444a9cb5931ca76698ae1a80d31691aa4153bcc804394e0019e
   languageName: node
   linkType: hard
 
