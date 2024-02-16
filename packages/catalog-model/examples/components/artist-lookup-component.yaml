@@ -28,6 +28,9 @@ metadata:
     - url: https://example.com/alert
       title: Alerts
       icon: alert
+    - url: https://example.com/console
+      title: Console
+      icon: Console      
   annotations:
     backstage.io/linguist: 'https://github.com/backstage/backstage/tree/master/plugins/playlist'
 spec:
