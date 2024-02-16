@@ -33,7 +33,7 @@ metadata:
       title: Console
       icon: console         
   annotations:
-    backstage.io/linguist: 'https://github.com/backstage/backstage/tree/master/plugins/playlist'
+    backstage.io/linguist: 'https://github.com/dbacademy/backstage/tree/master/plugins/playlist'
 spec:
   type: service
   lifecycle: experimental
