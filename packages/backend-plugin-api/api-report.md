@@ -119,7 +119,7 @@ export type BackstageNonePrincipal = {
 export type BackstagePrincipalTypes = {
   user: BackstageUserPrincipal;
   service: BackstageServicePrincipal;
-  unauthenticated: BackstageNonePrincipal;
+  none: BackstageNonePrincipal;
   unknown: unknown;
 };
 
