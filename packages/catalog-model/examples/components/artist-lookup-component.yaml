@@ -39,5 +39,6 @@ spec:
   lifecycle: experimental
   owner: cld-ocpadmin-sg
   system: artist-engagement-portal
+  ownedBy: cld-ocpadmin-sg
   dependsOn: ['resource:artists-db']
   apiConsumedBy: ['component:www-artist']
