@@ -1,11 +1,19 @@
 ---
-
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ocp-domain
+  description: Everything about artists
+spec:
+  owner: cld-ocpadmin-sg
+---
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: ocp-system
 spec:
   owner: cld-ocpadmin-sg
+  domain: ocp-domain
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
