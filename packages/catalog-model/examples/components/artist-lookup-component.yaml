@@ -51,6 +51,7 @@ metadata:
       icon: console         
   annotations:
     backstage.io/linguist: 'https://github.com/dbacademy/backstage/tree/master/plugins/playlist'
+    github.com/project-slug: dbacademy/backstage
 spec:
   type: service
   lifecycle: experimental
